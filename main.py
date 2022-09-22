@@ -1,4 +1,5 @@
 import turtle
+import random
 import time
 
 class Circuito():
@@ -24,9 +25,20 @@ class Circuito():
             new_turtle.setpos(self.__startLine, self.__posStart[i])# posiciono a las tortugas en sus lineas
             self.corredores.append(new_turtle)# meto new_turtle en el array corredores
 
+    def competir(self):
+        hayGanador = False
+        while not hayGanador: # mientras no cambie el estado de hayGanador a True
+            for tortuga in self.corredores: # se recorre la lista corredores
+                avance = random.randint(1,6) # se genera un numero random 
+                tortuga.forward(avance) # se le asigna el numero random a cada tortuga 
+
+                if tortuga.position()[0] >= self.__finishLine: # si 
+                    hayGanador = True
+                    print("la tortuga de color {} ha ganado".format(tortuga.color()[0]))
 
 
 
 if __name__ == '__main__': #si se ejecuta desde el programa principal main
     circuito = Circuito(640,480)
-    time.sleep(5)
+    circuito.competir()
+    #time.sleep(5)
